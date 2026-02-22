@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class BaseGun : MonoBehaviour
 {
     [SerializeField] public Gun gun;
+    [SerializeField] private GameObject muzzle;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +23,7 @@ public class BaseGun : MonoBehaviour
         if (context.performed)
         {
             Debug.Log(gun.gunName);
-            GameObject bullet = Instantiate(gun.prefab , transform.position, transform.rotation);
+            GameObject bullet = Instantiate(gun.prefab , muzzle.transform.position, muzzle.transform.rotation);
             //Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (bullet.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)) {
                 rb.AddForce(transform.right * gun.bulletForce);
