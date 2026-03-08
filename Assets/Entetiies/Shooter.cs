@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Tier1Guard", menuName = "Entities/Enemies/Tier1Guard")]
 public class Tier1Guard : ScriptableObject
 {
+    public Sprite sprite;
     public int health;
     public int damage;
     public float speed;

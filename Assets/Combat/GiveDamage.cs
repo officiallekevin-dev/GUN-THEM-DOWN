@@ -30,11 +30,14 @@ public class GiveDamage : MonoBehaviour
     /// <param name="target">The object that was hit by this GameObject.</param>
     private void TransferDamage(GameObject target)
     {
+      
         // Using SendMessage as a decoupled placeholder since the receiving health component is not implemented yet.
         // DontRequireReceiver ensures no errors are thrown if the target (e.g., Ground) doesn't have a TakeDamage method.
         //In the enemy's health script, there will need to be a method called "TakeDamage" along with a bracket thing 
         // like in TransferDamage, BaseDamage will be the value that the TakeDamage method "talks" about.
         target.SendMessage("TakeDamage", BaseDamage, SendMessageOptions.DontRequireReceiver);
     }
+   
+    
     
 }
