@@ -18,4 +18,5 @@ MonoBehaviour:
   magazineSize: 2
   reloadTime: 1
   prefab: {fileID: 6199435570126945251, guid: abed4da8cda34b24db485db4a4092e67, type: 3}
-  bulletForce: 0.1
+  bulletSpeed: 0.1
+  bulletRecoil: 10
