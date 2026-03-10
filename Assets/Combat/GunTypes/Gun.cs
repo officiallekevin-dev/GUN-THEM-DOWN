@@ -9,7 +9,8 @@ public class Gun : ScriptableObject
     public int magazineSize;
     public float reloadTime;
     public GameObject prefab;//ammo used -> it will be instantiated when the gun is fired 
-    public float bulletForce;
+    public float bulletSpeed = 0.1f;
+    public float bulletRecoil;
     //Firing mode
     //The actual gun image
     //magazine size
