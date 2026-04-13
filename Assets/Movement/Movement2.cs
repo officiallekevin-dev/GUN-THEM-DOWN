@@ -1,27 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement2 : MonoBehaviour
 {
+    
+
     [Header("Movement Settings")]
-    [Tooltip("The maximum horizontal speed of the player.")]
     [SerializeField] private float maxSpeed = 10f;
-
-    [Tooltip("Time in seconds to reach maximum speed from a standstill.")]
     [SerializeField] private float accelerationTime = 0.2f;
-
-    [Tooltip("Time in seconds to come to a stop from maximum speed.")]
     [SerializeField] private float decelerationTime = 0.1f;
-
-    [Tooltip("The peak height of the jump in Unity units.")]
     [SerializeField] private float jumpHeight = 3f;
-
-    [Tooltip("Multiplier for gravity when falling (optional for better feel).")]
     [SerializeField] private float fallGravityMultiplier = 1.5f;
-
-    [Tooltip("Multiplier for gravity when falling (optional for better feel).")]
     [SerializeField] private float defaultGravityMultiplier = 1.5f;
+    [SerializeField] private float movementForce;
 
     [Header("Ground Detection")]
     [SerializeField] private LayerMask groundLayer;
@@ -36,6 +29,7 @@ public class Movement2 : MonoBehaviour
     private Vector2 moveInput;
     private bool isGrounded;
     private bool jumpRequested;
+    
 
     private void Awake()
     {
@@ -53,11 +47,11 @@ public class Movement2 : MonoBehaviour
             ApplyJump();//Jump
             jumpRequested = false;//Reset
         }
+        
+        
     }
 
-    /// <summary>
-    /// Input System Callback for Move Action (Vector2)
-    /// </summary>
+   
     public void OnMove(InputAction.CallbackContext context)
     {
         //Get Direction of movement e.g left or right
@@ -102,15 +96,13 @@ public class Movement2 : MonoBehaviour
         float appliedAccel = Mathf.Clamp(neededAccel, -maxAccel, maxAccel);
 
         // F = m * a -> Force = mass * acceleration 
-        float movementForce = appliedAccel * rb.mass;
+        movementForce = appliedAccel * rb.mass;
         
         //Directly causes the playerr to move. It just adds the force to the player
         rb.AddForce(movementForce * Vector2.right);
     }
 
-    /// <summary>
-    /// Input System Callback for Jump Action (Button)
-    /// </summary>
+    
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)//If space or whatever button to jump is pressed
@@ -175,7 +167,7 @@ public class Movement2 : MonoBehaviour
         Color color = isGrounded ? Color.green : Color.red;
         Debug.DrawRay(origin, Vector2.down * groundCheckDistance, color);
     }
-    //We can change how fast the player falls 
+    
     private void ApplyGravityModifiers()
     {
         // Makes falling feel heavier/less floaty
@@ -189,7 +181,7 @@ public class Movement2 : MonoBehaviour
         }
     }
 
-    //Hitbox for checking ground
+    
     private void OnDrawGizmosSelected()
     {
         // Draw Ground Check Box
@@ -211,4 +203,8 @@ public class Movement2 : MonoBehaviour
         // So the check area is effectively below the Origin.
         Gizmos.DrawWireCube(origin + Vector2.down * (groundCheckDistance / 2f), groundCheckSize);
     }
+
+    
 }
+
+

@@ -37,7 +37,7 @@ public class BaseGun : MonoBehaviour
             }
             //apply recoil to player by pushing the player backwards
             
-            playerRb.AddForce(-transform.right * gun.bulletRecoil, ForceMode2D.Impulse);
+            playerRb.AddForce(new Vector2(-transform.right.x * gun.bulletRecoil, 0f), ForceMode2D.Impulse);
             
             //-transform.right * gun.bulletRecoil;
             
